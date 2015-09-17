@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+function bootstrap {
+  local shome="$(unset CDPATH; cd -P -- "$(dirname -- "$BASH_SOURCE")/.." && pwd -P)"
+  source "$shome/script/profile"
+
+  local url_go='https://storage.googleapis.com/golang/go1.5.1.darwin-amd64.pkg'
+
+  case "$(uname -s)" in
+    Darwin)
+     local tmp_go="$(mktemp -t XXXXXX)"
+     trap "$(printf "rm -f '%q'" "$tmp_go")" EXIT
+     curl -L -o "$tmp_go" "$url_go"
+     mv -f "$tmp_go" "$tmp_go.pkg"
+     trap "$(printf "rm -f '%q'" "$tmp_go.pkg")" EXIT
+     sudo installer -package "$tmp_go.pkg" -target "/Volumes/Macintosh HD"
+     ;;
+  esac
+}
+
+bootstrap
