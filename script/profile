@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 function profile {
-  local shome="$(unset CDPATH; cd -P -- "$(dirname -- "$BASH_SOURCE")/.." && pwd -P)"
-  PATH="$shome/bin:$shome/exec:$PATH"
+  local shome="$(unset CDPATH; cd -P -- "$(dirname -- "$BASH_SOURCE")/.." && echo "$PWD")"
+  PATH="$shome/bin:$shome/exec:/usr/local/go/bin:$PATH"
 }
 
 profile
