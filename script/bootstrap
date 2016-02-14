@@ -11,10 +11,10 @@ function bootstrap {
   trap "$(printf "rm -f '%q'" "$tmp_go")" EXIT
   case "$(uname -s)" in
     Darwin)
-      curl -L -o "$tmp_go" "$url_go_Darwin"
+      curl -sS -L -o "$tmp_go" "$url_go_Darwin"
       ;;
     Linux)
-      curl -L -o "$tmp_go" "$url_go_Linux"
+      curl -sS -L -o "$tmp_go" "$url_go_Linux"
       ;;
   esac
 
