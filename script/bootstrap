@@ -9,14 +9,9 @@ function bootstrap {
 
   local tmp_go="$(mktemp -t XXXXXX)"
   trap "$(printf "rm -f '%q'" "$tmp_go")" EXIT
-  case "$(uname -s)" in
-    Darwin)
-      curl -sS -L -o "$tmp_go" "$url_go_Darwin"
-      ;;
-    Linux)
-      curl -sS -L -o "$tmp_go" "$url_go_Linux"
-      ;;
-  esac
+  
+  local url_go="url_go$(uname -s)"
+  curl -sS -L -o "$tmp_go" "${!url_go}"
 
   mkdir -p "$shome/install"
   pushd "$shome/install"
