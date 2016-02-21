@@ -8,7 +8,7 @@ function bootstrap {
   local url_go_Linux='https://storage.googleapis.com/golang/go1.5.3.linux-amd64.tar.gz'
 
   local url_go="url_go_$(uname -s)"
-  local fnm_go="$(basename "$url_go")"
+  local fnm_go="$(basename "${!url_go}")"
   cache curl "$fnm_go" "${!url_go}" -sS -L
 
   mkdir -p "$shome/install"
