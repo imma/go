@@ -7,15 +7,13 @@ function bootstrap {
   local url_go_Darwin='https://storage.googleapis.com/golang/go1.5.3.darwin-amd64.tar.gz'
   local url_go_Linux='https://storage.googleapis.com/golang/go1.5.3.linux-amd64.tar.gz'
 
-  local tmp_go="$(mktemp -t XXXXXX)"
-  trap "$(printf "rm -f '%q'" "$tmp_go")" EXIT
-  
   local url_go="url_go_$(uname -s)"
-  curl -sS -L -o "$tmp_go" "${!url_go}"
+  local fnm_go="$(basename "$url_go")"
+  cache curl "$fnm_go" "${!url_go}" -sS -L
 
   mkdir -p "$shome/install"
   pushd "$shome/install"
-  tar xvfz "$tmp_go"
+  tar xvfz "${BASEBOX_CACHE}/curl/$fnm_go"
   popd
 }
 
