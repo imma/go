@@ -9,7 +9,7 @@ function bootstrap {
 
   local url_go="url_go_$(uname -s)"
   local fnm_go="$(basename "${!url_go}")"
-  cache curl "$fnm_go" "${!url_go}" -sS -L
+  cache curl "$fnm_go" "${!url_go}"
 
   mkdir -p "$shome/install"
   pushd "$shome/install"
