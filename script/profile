@@ -2,7 +2,7 @@
 
 function profile {
   local shome="$(unset CDPATH; cd -P -- "$(dirname -- "$BASH_SOURCE")/.." && echo "$PWD")"
-  PATH="$shome/bin:$shome/exec:$shome/install/go/bin:$PATH"
+  PATH="$shome/bin:$shome/install/go/bin:$PATH"
 
   export GOROOT="${GOROOT:-"$shome/install/go"}"
 }
