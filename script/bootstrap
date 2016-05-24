@@ -13,6 +13,7 @@ function bootstrap {
 
   mkdir -p "$shome/install"
   pushd "$shome/install"
+  rm -rf go
   tar xvfz "${BASEBOX_CACHE}/curl/$fnm_go"
   popd
 }
