@@ -4,8 +4,8 @@ function bootstrap {
   local shome="$(unset CDPATH; cd -P -- "$(dirname -- "$BASH_SOURCE")/.." && pwd -P)"
   source "$shome/script/profile"
 
-  local url_go_Darwin='https://storage.googleapis.com/golang/go1.5.3.darwin-amd64.tar.gz'
-  local url_go_Linux='https://storage.googleapis.com/golang/go1.5.3.linux-amd64.tar.gz'
+  local url_go_Darwin='https://storage.googleapis.com/golang/go1.5.4.darwin-amd64.tar.gz'
+  local url_go_Linux='https://storage.googleapis.com/golang/go1.5.4.linux-amd64.tar.gz'
 
   local url_go="url_go_$(uname -s)"
   local fnm_go="$(basename "${!url_go}")"
