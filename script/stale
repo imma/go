@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 function main {
-  local shome="$(unset CDPATH; cd -P -- "$(dirname -- "$BASH_SOURCE")/.." && echo "$PWD")"
+  local shome="$(cd -P -- "${BASH_SOURCE%/*}/.." && pwd -P)"
   source "$shome/script/profile"
 
   if [[ -x "$(type -P go)" ]]; then

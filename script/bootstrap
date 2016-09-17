@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 function bootstrap {
-  local shome="$(unset CDPATH; cd -P -- "$(dirname -- "$BASH_SOURCE")/.." && pwd -P)"
+  local shome="$(cd -P -- "${BASH_SOURCE%/*}/.." && pwd -P)"
   source "$shome/script/profile"
 
   local url_go_Darwin='https://storage.googleapis.com/golang/go1.7.darwin-amd64.tar.gz'
