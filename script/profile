@@ -4,7 +4,7 @@ function _go_profile {
   local shome="${_go_home:-"$(cd -P -- "$(dirname -- "$BASH_SOURCE")/.." && echo "$PWD")"}"
   PATH="$shome/bin:$shome/install/go/bin:$PATH"
 
-  GO_VERSION='1.8.1'
+  GO_VERSION='1.8.3'
   export GOROOT="${GOROOT:-"$shome/install/go"}"
 }
 
