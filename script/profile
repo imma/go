@@ -4,6 +4,15 @@ function _go_profile {
   local shome="${_go_home:="$(cd -P -- "$(dirname -- "$BASH_SOURCE")/.." && echo "$PWD")"}"
   PATH="$shome/bin:$shome/install/go/bin:$PATH"
 
+  case "$(uname -s)" in
+    Darwin)
+      PATH="$shome/install/go/pkg/tool/darwin_amd64"
+      ;;
+    Linux)
+      PATH="$shome/install/go/pkg/tool/linux_amd64"
+      ;;
+  esac
+
   GO_VERSION='1.8.3'
   export GOROOT="${GOROOT:-"$shome/install/go"}"
 }
