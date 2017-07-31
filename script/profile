@@ -6,10 +6,10 @@ function _go_profile {
 
   case "$(uname -s)" in
     Darwin)
-      PATH="$shome/install/go/pkg/tool/darwin_amd64"
+      PATH="$shome/install/go/pkg/tool/darwin_amd64:$PATH"
       ;;
     Linux)
-      PATH="$shome/install/go/pkg/tool/linux_amd64"
+      PATH="$shome/install/go/pkg/tool/linux_amd64:$PATH"
       ;;
   esac
 
