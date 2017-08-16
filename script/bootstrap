@@ -11,7 +11,7 @@ function bootstrap {
   local fnm_go="$(basename "${!url_go}")"
   cache curl "$fnm_go" "${!url_go}"
 
-  localhost -m file -- state=directory dest="$shome/install"
+  mkdir -p "$shome/install"
   pushd "$shome/install"
   rm -rf go
   tar xfz "${CACHE_DIR}/curl/$fnm_go"
@@ -19,8 +19,8 @@ function bootstrap {
 
   export GOPATH="$shome/install"
   go get -u github.com/golang/dep/...
-  localhost -m file -- state=directory dest="$shome/bin"
-  localhost -m file -- state=link src=../install/bin/dep dest="$shome/bin/dep"
+  mkdir -p "$shome/bin"
+  ln -nfs ../install/bin/dep "$shome/bin/"
 }
 
 bootstrap
