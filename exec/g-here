@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+function main {
+  local shome="$(cd -P -- "${BASH_SOURCE%/*}/.." && pwd -P)"
+  source "$shome/script/profile"
+
+  if [[ "$#" == 0 ]]; then
+    set -- .
+  fi
+
+  cd "$1"; shift
+  export GOPATH="$(pwd)"
+  export PATH="$GOPATH/bin:$PATH"
+  exec "$SHELL" -norc "$@"
+}
+
+source sub "$BASH_SOURCE" "$@"
