@@ -8,7 +8,7 @@ function _go_profile {
     Darwin)
       PATH="$shome/install/go/pkg/tool/darwin_amd64:$PATH"
       ;;
-    Ubuntu|Amazon)
+    *)
       PATH="$shome/install/go/pkg/tool/linux_amd64:$PATH"
       ;;
   esac
