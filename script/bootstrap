@@ -3,9 +3,13 @@
 function bootstrap {
   local shome="$(cd -P -- "${BASH_SOURCE%/*}/.." && pwd -P)"
   source "$shome/script/profile"
+  source normalize
 
   local url_go_Darwin="https://storage.googleapis.com/golang/go${GO_VERSION}.darwin-amd64.tar.gz"
   local url_go_Linux="https://storage.googleapis.com/golang/go${GO_VERSION}.linux-amd64.tar.gz"
+
+  local url_govendor_Darwin="https://github.com/kardianos/govendor/releases/download/v${GOVENDOR_VERSION}/govendor_darwin_amd64"
+  local url_govendor_Linux="https://github.com/kardianos/govendor/releases/download/v${GOVENDOR_VERSION}/govendor_linux_amd64"
 
   local url_go="url_go_$(uname -s)"
   local fnm_go="$(basename "${!url_go}")"
@@ -21,6 +25,14 @@ function bootstrap {
   go get -u github.com/golang/dep/...
   mkdir -p "$shome/bin"
   ln -nfs ../install/bin/dep "$shome/bin/"
+
+  mkdir -p "$shome/bin"
+  local url_govendor="url_govendor_$(uname -s)"
+  local fnm_govendor="$(basename "${!url_govendor}")-${GOVENDOR_VERSION}.gz"
+  cache curl "$fnm_govendor" "${!url_govendor}"
+
+  rsync -ia "${CACHE_DIR}/curl/$fnm_govendor" "$shome/bin/govendor"
+  chmod 755 "$shome/bin/govendor"
 }
 
 bootstrap
