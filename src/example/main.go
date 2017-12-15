@@ -1,7 +1,7 @@
-package main
+package example
 
 import "fmt"
 
-func main() {
+func Meh() {
 	fmt.Println("vim-go")
 }

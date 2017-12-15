@@ -21,11 +21,6 @@ function bootstrap {
   tar xfz "${CACHE_DIR}/curl/$fnm_go"
   popd
 
-  export GOPATH="$shome/install"
-  go get -u github.com/golang/dep/...
-  mkdir -p "$shome/bin"
-  ln -nfs ../install/bin/dep "$shome/bin/"
-
   mkdir -p "$shome/bin"
   local url_govendor="url_govendor_$(uname -s)"
   local fnm_govendor="$(basename "${!url_govendor}")-${GOVENDOR_VERSION}.gz"
