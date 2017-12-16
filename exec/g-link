@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+function main {
+  local shome="$(cd -P -- "${BASH_SOURCE%/*}/.." && pwd -P)"
+  source "$shome/script/profile"
+
+  local nm_block="$1"; shift
+
+  cd "$(go env GOPATH)"
+
+  local ptr_block="_${nm_block}_home"
+  local pth_git="$(cd "${!ptr_block}" && (git remote get-url gh 2>/dev/null || git remote get-url origin) | sed 's#:#/#' | cut -d'@' -f2-)"
+
+  rm -rf "$pth_git"
+  mkdir -p "$(dirname "$pth_git")"
+  ln -nfs "${!ptr_block}" "$pth_git"
+}
+
+source sub "$BASH_SOURCE" "$@"
