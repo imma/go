@@ -28,6 +28,9 @@ function bootstrap {
 
   rsync -ia "${CACHE_DIR}/curl/$fnm_govendor" "$shome/bin/govendor"
   chmod 755 "$shome/bin/govendor"
+
+  export GOPATH="$shome"
+  go get -u github.com/spf13/cobra/cobra
 }
 
 bootstrap
